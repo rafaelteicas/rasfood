@@ -3,6 +3,7 @@ package org.example.dao;
 import org.example.entity.Cardapio;
 
 import javax.persistence.EntityManager;
+import java.math.BigDecimal;
 import java.util.List;
 
 public class CardapioDao {
@@ -23,6 +24,11 @@ public class CardapioDao {
     public List<Cardapio> consultarTodos() {
         String jpql = "SELECT c FROM Cardapio c";
         return this.entityManager.createQuery(jpql, Cardapio.class).getResultList();
+    }
+
+    public List<Cardapio> consultarPorValor(final BigDecimal valor) {
+        String jpql = "SELECT c FROM Cardapio c WHERE c.valor = :valor";
+        return this.entityManager.createQuery(jpql, Cardapio.class).setParameter("valor", valor).getResultList();
     }
 
     public void atualizar(final Cardapio cardapio) {

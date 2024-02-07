@@ -26,13 +26,12 @@ public class Cardapio {
     @Column(name = "data_de_registro")
     private LocalDateTime dataDeRegistro = LocalDateTime.now();
 
-    public Cardapio(String nome, String descricao, boolean disponivel, BigDecimal valor, Categoria categoria, LocalDateTime dataDeRegistro) {
+    public Cardapio(String nome, String descricao, boolean disponivel, BigDecimal valor, Categoria categoria) {
         this.nome = nome;
         this.descricao = descricao;
         this.disponivel = disponivel;
         this.valor = valor;
         this.categoria = categoria;
-        this.dataDeRegistro = dataDeRegistro;
     }
 
     public Cardapio() {}
