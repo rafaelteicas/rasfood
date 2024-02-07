@@ -1,48 +1,48 @@
-package org.example.service;
+package org.example.service.test;
 
-import org.example.dao.PratoDao;
-import org.example.entity.Prato;
+import org.example.dao.CardapioDao;
+import org.example.entity.Cardapio;
 import org.example.util.JPAUtil;
 
 import javax.persistence.EntityManager;
 import java.math.BigDecimal;
 
-public class PratoService {
+public class CardapioService {
     public static void main(String[] args) {
-        Prato risoto = new Prato();
+        Cardapio risoto = new Cardapio();
         risoto.setNome("Risoto de frutos do mar");
         risoto.setDescricao("Risoto acompanhado de lula, polvo e mariscos.");
         risoto.setDisponivel(true);
         risoto.setValor(BigDecimal.valueOf(88.50));
 
-        Prato salmao = new Prato();
+        Cardapio salmao = new Cardapio();
         salmao.setNome("Salmão ao molho de maracuja");
         salmao.setDescricao("Salmão grelhado ao molho de maracuja");
         salmao.setDisponivel(true);
         salmao.setValor(BigDecimal.valueOf(60.00));
 
         EntityManager entityManager = JPAUtil.getEntityManagerRasFood();
-        PratoDao pratoDao = new PratoDao(entityManager);
+        CardapioDao cardapioDao = new CardapioDao(entityManager);
 
         entityManager.getTransaction().begin();
 
-        pratoDao.cadastrar(risoto);
+        cardapioDao.cadastrar(risoto);
         entityManager.flush();
 
-        pratoDao.cadastrar(salmao);
+        cardapioDao.cadastrar(salmao);
         entityManager.flush();
 
-        System.out.println("O prato consultado foi: " + pratoDao.consultar(2));
+        System.out.println("O prato consultado foi: " + cardapioDao.consultar(2));
 
-        pratoDao.excluir(salmao);
+        cardapioDao.excluir(salmao);
 
         entityManager.clear();
 
         risoto.setValor(BigDecimal.valueOf(75.50));
 
-        pratoDao.atualizar(risoto);
+        cardapioDao.atualizar(risoto);
 
-        System.out.println("O prato consultado foi: " + pratoDao.consultar(1));
+        System.out.println("O prato consultado foi: " + cardapioDao.consultar(1));
 
     }
 }
