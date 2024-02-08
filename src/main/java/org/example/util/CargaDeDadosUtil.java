@@ -43,7 +43,7 @@ public class CargaDeDadosUtil {
         cardapioDao.cadastrar(risoto);
         cardapioDao.cadastrar(salmao);
 
-        entityManager.getTransaction().commit();
+        entityManager.flush();
         entityManager.clear();
     }
 }

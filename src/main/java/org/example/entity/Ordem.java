@@ -3,6 +3,7 @@ package org.example.entity;
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -22,10 +23,15 @@ public class Ordem {
     @ManyToOne
     private Cliente cliente;
 
-    @ManyToMany
-    private List<Cardapio> cardapioList;
+    @OneToMany(mappedBy = "ordem", cascade = CascadeType.ALL)
+    private List<OrdensCardapio> ordensCardapioList = new ArrayList<>();
 
     public Ordem() {
+    }
+
+    public void addOrdensCardapio(OrdensCardapio ordensCardapio) {
+        ordensCardapio.setOrdem(this);
+        this.ordensCardapioList.add(ordensCardapio);
     }
 
     public Ordem(Cliente cliente) {
@@ -62,6 +68,14 @@ public class Ordem {
 
     public void setCliente(Cliente cliente) {
         this.cliente = cliente;
+    }
+
+    public List<OrdensCardapio> getOrdensCardapioList() {
+        return ordensCardapioList;
+    }
+
+    public void setOrdensCardapioList(List<OrdensCardapio> ordensCardapioList) {
+        this.ordensCardapioList = ordensCardapioList;
     }
 
     @Override

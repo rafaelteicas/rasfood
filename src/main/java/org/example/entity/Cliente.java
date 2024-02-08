@@ -18,6 +18,12 @@ public class Cliente {
     public Cliente() {
     }
 
+    public Cliente(String cpf, String nome, String cep) {
+        this.cpf = cpf;
+        this.nome = nome;
+        this.cep = cep;
+    }
+
     public String getCpf() {
         return cpf;
     }
