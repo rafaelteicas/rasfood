@@ -1,12 +1,13 @@
 package org.example.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "endereco")
 public class Endereco {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     private String cep;
@@ -19,18 +20,17 @@ public class Endereco {
 
     private String complemento;
 
+    @ManyToOne
     private Cliente cliente;
 
     public Endereco() { }
 
-    public Endereco(Integer id, String cep, String rua, String estado, String cidade, String complemento, Cliente cliente) {
-        this.id = id;
+    public Endereco(String cep, String rua, String estado, String cidade, String complemento) {
         this.cep = cep;
         this.rua = rua;
         this.estado = estado;
         this.cidade = cidade;
         this.complemento = complemento;
-        this.cliente = cliente;
     }
 
     public Integer getId() {
@@ -98,7 +98,6 @@ public class Endereco {
                 ", estado='" + estado + '\'' +
                 ", cidade='" + cidade + '\'' +
                 ", complemento='" + complemento + '\'' +
-                ", cliente=" + cliente +
                 '}';
     }
 }
