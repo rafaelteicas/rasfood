@@ -22,7 +22,7 @@ public class OrdensCardapio {
 
     private Integer quantidade;
 
-    public OrdensCardapio() {
+    public OrdensCardapio(Cardapio cardapio, int i) {
     }
 
     public OrdensCardapio(Cardapio cardapio, Integer quantidade, BigDecimal valorDeRegistro) {

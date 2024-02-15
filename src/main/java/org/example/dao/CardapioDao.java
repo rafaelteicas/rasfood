@@ -22,9 +22,9 @@ public class CardapioDao {
         return this.entityManager.find(Cardapio.class, id);
     }
 
-    public List<Cardapio> consultarTodos() {
+    public List<Cardapio> consultarTodos(){
         String jpql = "SELECT c FROM Cardapio c";
-        return this.entityManager.createQuery(jpql, Cardapio.class).getResultList();
+        return this.entityManager.createQuery(jpql,Cardapio.class).getResultList();
     }
 
     public List<Cardapio> consultarPorValor(final BigDecimal valor) {

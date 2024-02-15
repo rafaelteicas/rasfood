@@ -23,7 +23,7 @@ public class Cliente {
     }
 
     public Cliente(String cpf, String email,String nome) {
-        this.ClienteId clienteId = new ClienteId(email, cpf);
+        this.clienteId = new ClienteId(email, cpf);
         this.nome = nome;
     }
 
