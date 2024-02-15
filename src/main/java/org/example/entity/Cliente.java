@@ -8,10 +8,13 @@ import java.util.List;
 @Table(name = "cliente")
 public class Cliente {
 
-    @Id
-    private String cpf;
+    @EmbeddedId
+    private ClienteId clienteId;
 
     private String nome;
+
+    @Embedded
+    private Contato contato;
 
     @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL)
     private List<Endereco> endereco = new ArrayList<>();
@@ -19,8 +22,8 @@ public class Cliente {
     public Cliente() {
     }
 
-    public Cliente(String cpf, String nome) {
-        this.cpf = cpf;
+    public Cliente(String cpf, String email,String nome) {
+        this.ClienteId clienteId = new ClienteId(email, cpf);
         this.nome = nome;
     }
 
@@ -29,12 +32,26 @@ public class Cliente {
         this.endereco.add(endereco);
     }
 
-    public String getCpf() {
-        return cpf;
+    public Contato getContato() {
+        return contato;
     }
 
-    public void setCpf(String cpf) {
-        this.cpf = cpf;
+    public void setContato(Contato contato) {
+        this.contato = contato;
+    }
+
+    public String getCpf() {
+        return clienteId.getCpf();
+    }
+
+    public void setCpf(String cpf) { clienteId.setCpf(cpf); }
+
+    public String getEmail() {
+        return clienteId.getEmail();
+    }
+
+    public void setEmail(String email) {
+        clienteId.setEmail(email);
     }
 
     public String getNome() {
@@ -56,8 +73,10 @@ public class Cliente {
     @Override
     public String toString() {
         return "Cliente{" +
-                "cpf='" + cpf + '\'' +
+                "cpf='" + clienteId.getCpf() + '\'' +
+                "email='" + clienteId.getEmail() + '\'' +
                 ", nome='" + nome + '\'' +
+                ", contato=" + contato +
                 ", endereco=" + endereco +
                 '}';
     }

@@ -2,6 +2,7 @@ package org.example.dao;
 
 
 import org.example.entity.Cliente;
+import org.example.entity.ClienteId;
 
 import javax.persistence.EntityManager;
 import java.util.List;
@@ -17,7 +18,7 @@ public class ClienteDao {
         this.entityManager.persist(cliente);
     }
 
-    public Cliente consultar(final Integer id) {
+    public Cliente consultar(final ClienteId id) {
         return this.entityManager.find(Cliente.class, id);
     }
 
