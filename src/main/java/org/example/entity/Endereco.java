@@ -20,7 +20,7 @@ public class Endereco {
 
     private String complemento;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private Cliente cliente;
 
     public Endereco() { }

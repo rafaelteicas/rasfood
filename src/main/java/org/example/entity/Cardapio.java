@@ -3,7 +3,6 @@ package org.example.entity;
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.util.List;
 
 @Entity
 @Table(name = "cardapio")
@@ -21,7 +20,7 @@ public class Cardapio {
 
     private BigDecimal valor;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private Categoria categoria;
 
     @Column(name = "data_de_registro")

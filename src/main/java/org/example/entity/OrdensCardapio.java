@@ -14,7 +14,7 @@ public class OrdensCardapio {
     @ManyToOne
     private Ordem ordem;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private Cardapio cardapio;
 
     @Column(name = "valor_de_registro")

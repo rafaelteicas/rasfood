@@ -2,6 +2,7 @@ package org.example.dao;
 
 
 import org.example.entity.Ordem;
+import org.example.vo.ItemsPrincipaisVo;
 
 import javax.persistence.EntityManager;
 import java.util.List;
@@ -24,6 +25,13 @@ public class OrdemDao {
     public List<Ordem> consultarTodos() {
         String jpql = "SELECT o FROM Ordem o";
         return this.entityManager.createQuery(jpql, Ordem.class).getResultList();
+    }
+
+    public List<ItemsPrincipaisVo> consultarItemsMaisVendidos() {
+        String jpql = "SELECT new org.example.vo.ItemsPrincipaisVo(c.nome, SUM(oc.quantidade)) FROM Ordem o" +
+                "JOIN OrdensCardapio oc on o.id = oc.cardapio.id" +
+                "JOIN oc.cardapio c";
+        return this.entityManager.createQuery(jpql, ItemsPrincipaisVo.class).getResultList();
     }
 
     public void atualizar(final Ordem ordem) {
